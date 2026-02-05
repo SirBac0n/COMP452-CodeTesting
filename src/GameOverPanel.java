@@ -72,13 +72,8 @@ public class GameOverPanel extends JPanel {
     public void setGameResults(GameResult result){
         this.gameResult = result;
 
-        answerTxt.setText("The answer was " + result.correctValue + ".");
-        if(result.numGuesses == 1){
-            numGuessesTxt.setText((result.humanWasPlaying ? "You" : "I") + " guessed it on the first try!");
-        }
-        else {
-            numGuessesTxt.setText("It took " + (result.humanWasPlaying ? "you" : "me") + " " + result.numGuesses + " guesses.");
-        }
+        answerTxt.setText(getAnswerText(result));
+        numGuessesTxt.setText(getNumGuessesText(result));
 
         if(result.humanWasPlaying){
             // write stats to file
@@ -94,5 +89,16 @@ public class GameOverPanel extends JPanel {
                 // NOTE: For this project, you do not need unit tests for handling this exception.
             }
         }
+    }
+
+    private String getAnswerText(GameResult result) {
+        return "The answer was " + result.correctValue + ".";
+    }
+
+    private String getNumGuessesText(GameResult result) {
+        if(result.numGuesses == 1){
+            return (result.humanWasPlaying ? "You" : "I") + " guessed it on the first try!";
+        }
+        return "It took " + (result.humanWasPlaying ? "you" : "me") + " " + result.numGuesses + " guesses.";
     }
 }
