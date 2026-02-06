@@ -16,7 +16,11 @@ public class HumanGuessesGame {
     // maybe dependency inject Random?
     HumanGuessesGame(){
         Random randGen = new Random();
-        this.target = randGen.nextInt(UPPER_BOUND) + 1;
+        this(randGen.nextInt(UPPER_BOUND) + 1);
+    }
+
+    HumanGuessesGame(int target){
+        this.target = target;
 
         numGuesses = 0;
         gameIsDone = false;
