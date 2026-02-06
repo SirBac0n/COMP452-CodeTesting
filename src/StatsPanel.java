@@ -90,10 +90,8 @@ public class StatsPanel extends JPanel {
         }
     }
 
-    private void updateResultsPanel(){
+    private void updateResultsPanel(GameStats stats){
         clearResults();
-
-        GameStats stats = new StatsFile();
 
         for(int binIndex=0; binIndex<BIN_EDGES.length; binIndex++){
             final int lowerBound = BIN_EDGES[binIndex];
@@ -116,5 +114,9 @@ public class StatsPanel extends JPanel {
             JLabel resultLabel = resultsLabels.get(binIndex);
             resultLabel.setText(Integer.toString(numGames));
         }
+    }
+
+    private void updateResultsPanel() {
+        updateResultsPanel(new StatsFile());
     }
 }
