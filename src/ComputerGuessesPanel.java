@@ -90,6 +90,13 @@ public class ComputerGuessesPanel extends JPanel {
         });
     }
 
+    public ComputerGuessesPanel() {
+        numGuesses = 0;
+        upperBound = 1000;
+        lowerBound = 1;
+        lastGuess = getNextGuess(upperBound, lowerBound);
+    }
+
     private int getNextGuess(int upperBound, int lowerBound) {
         return (lowerBound + upperBound + 1) / 2;
     }

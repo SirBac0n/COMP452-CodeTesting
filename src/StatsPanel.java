@@ -83,6 +83,11 @@ public class StatsPanel extends JPanel {
         });
     }
 
+    public StatsPanel() {
+        resultsPanel = new JPanel();
+        resultsLabels = new ArrayList<>();
+    }
+
 
     private void clearResults(){
         for(JLabel lbl : resultsLabels){
