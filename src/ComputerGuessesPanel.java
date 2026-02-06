@@ -41,10 +41,7 @@ public class ComputerGuessesPanel extends JPanel {
 
         JButton lowerBtn = new JButton("Lower");
         lowerBtn.addActionListener(e -> {
-            upperBound = Math.min(upperBound, lastGuess);
-
-            lastGuess = getNextGuess(upperBound, lowerBound);
-            numGuesses += 1;
+            lowerGuess();
             guessMessage.setText("I guess " + lastGuess + ".");
         });
         this.add(lowerBtn);
@@ -68,10 +65,7 @@ public class ComputerGuessesPanel extends JPanel {
 
         JButton higherBtn = new JButton("Higher");
         higherBtn.addActionListener(e -> {
-            lowerBound = Math.max(lowerBound, lastGuess + 1);
-
-            lastGuess = getNextGuess(upperBound, lowerBound);
-            numGuesses += 1;
+            higherGuess();
             guessMessage.setText("I guess " + lastGuess + ".");
         });
         this.add(higherBtn);
@@ -88,6 +82,20 @@ public class ComputerGuessesPanel extends JPanel {
                 guessMessage.setText("I guess " + lastGuess + ".");
             }
         });
+    }
+
+    public void lowerGuess() {
+        upperBound = Math.min(upperBound, lastGuess);
+
+        lastGuess = getNextGuess(upperBound, lowerBound);
+        numGuesses += 1;
+    }
+
+    public void higherGuess() {
+        lowerBound = Math.max(lowerBound, lastGuess + 1);
+
+        lastGuess = getNextGuess(upperBound, lowerBound);
+        numGuesses += 1;
     }
 
     public ComputerGuessesPanel() {
