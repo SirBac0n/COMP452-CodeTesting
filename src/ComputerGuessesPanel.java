@@ -43,7 +43,7 @@ public class ComputerGuessesPanel extends JPanel {
         lowerBtn.addActionListener(e -> {
             upperBound = Math.min(upperBound, lastGuess);
 
-            lastGuess = (lowerBound + upperBound + 1) / 2;
+            lastGuess = getNextGuess(upperBound, lowerBound);
             numGuesses += 1;
             guessMessage.setText("I guess " + lastGuess + ".");
         });
@@ -70,7 +70,7 @@ public class ComputerGuessesPanel extends JPanel {
         higherBtn.addActionListener(e -> {
             lowerBound = Math.max(lowerBound, lastGuess + 1);
 
-            lastGuess = (lowerBound + upperBound + 1) / 2;
+            lastGuess = getNextGuess(upperBound, lowerBound);
             numGuesses += 1;
             guessMessage.setText("I guess " + lastGuess + ".");
         });
@@ -84,10 +84,13 @@ public class ComputerGuessesPanel extends JPanel {
                 upperBound = 1000;
                 lowerBound = 1;
 
-                lastGuess = (lowerBound + upperBound + 1) / 2;
+                lastGuess = getNextGuess(upperBound, lowerBound);
                 guessMessage.setText("I guess " + lastGuess + ".");
             }
         });
     }
 
+    private int getNextGuess(int upperBound, int lowerBound) {
+        return (lowerBound + upperBound + 1) / 2;
+    }
 }
