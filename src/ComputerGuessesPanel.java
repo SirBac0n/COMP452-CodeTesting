@@ -105,7 +105,23 @@ public class ComputerGuessesPanel extends JPanel {
         lastGuess = getNextGuess(upperBound, lowerBound);
     }
 
-    private int getNextGuess(int upperBound, int lowerBound) {
+    public int getNextGuess(int upperBound, int lowerBound) {
         return (lowerBound + upperBound + 1) / 2;
+    }
+
+    public int getNumGuesses() {
+        return numGuesses;
+    }
+
+    public int getLastGuess() {
+        return lastGuess;
+    }
+
+    public int getLowerBound() {
+        return lowerBound;
+    }
+
+    public int getUpperBound() {
+        return upperBound;
     }
 }

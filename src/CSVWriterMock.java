@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class CSVWriterMock extends CSVWriter {
     public ArrayList<String[]> lines;
+
     public CSVWriterMock(Writer writer) {
         super(writer);
         lines = new ArrayList<>();
