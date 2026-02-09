@@ -2,12 +2,9 @@ import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 
-import java.io.FileWriter;
-import java.io.Writer;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GameOverPanelTest {
+public class GameOverWriterTest {
 
     @Test
     void setGameResults() {
@@ -15,7 +12,7 @@ public class GameOverPanelTest {
         WriterMock writer = new WriterMock();
         CSVWriterMock csv = new CSVWriterMock(writer);
         GameResult gr = new GameResult(true, 500, 1);
-        gop.setGameResults(gr, csv);
+        GameOverWriter.writeGameResults(gr, csv);
         assertEquals(1, csv.lines.size());
         assertEquals("1", csv.lines.getFirst()[1]);
     }
