@@ -13,7 +13,6 @@ public class HumanGuessesGame {
     private int numGuesses;
     private boolean gameIsDone; // true iff makeGuess has been called with the target value
 
-    // maybe dependency inject Random?
     HumanGuessesGame(){
         Random randGen = new Random();
         this(randGen.nextInt(UPPER_BOUND) + 1);
