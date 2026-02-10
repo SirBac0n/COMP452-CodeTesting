@@ -86,6 +86,10 @@ public class StatsPanel extends JPanel {
     public StatsPanel() {
         resultsPanel = new JPanel();
         resultsLabels = new ArrayList<>();
+        for (int binIndex = 0; binIndex < BIN_EDGES.length; binIndex++) {
+            JLabel result = new JLabel("--");
+            resultsLabels.add(result);
+        }
     }
 
 
@@ -95,9 +99,8 @@ public class StatsPanel extends JPanel {
         }
     }
 
-    private void updateResultsPanel(GameStats stats){
-        clearResults();
-
+    public ArrayList<Integer> getBinValues(GameStats stats) {
+        ArrayList<Integer> binValues = new ArrayList<>();
         for(int binIndex=0; binIndex<BIN_EDGES.length; binIndex++){
             final int lowerBound = BIN_EDGES[binIndex];
             int numGames = 0;
@@ -115,13 +118,20 @@ public class StatsPanel extends JPanel {
                     numGames += stats.numGames(numGuesses);
                 }
             }
-
-            JLabel resultLabel = resultsLabels.get(binIndex);
-            resultLabel.setText(Integer.toString(numGames));
+            binValues.add(numGames);
         }
+        return binValues;
     }
 
-    private void updateResultsPanel() {
-        updateResultsPanel(new StatsFile());
+    public void updateResultsPanel(){
+        clearResults();
+
+        GameStats stats = new StatsFile();
+
+        ArrayList<Integer> binValues = getBinValues(stats);
+        for (int binIndex = 0; binIndex < binValues.size(); binIndex++) {
+            JLabel resultLabel = resultsLabels.get(binIndex);
+            resultLabel.setText(Integer.toString(binValues.get(binIndex)));
+        }
     }
 }
